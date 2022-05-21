@@ -15,3 +15,7 @@
   grid-area: c;
   background: gold;
 }
+
+a {
+  text-decoration: none;
+}
