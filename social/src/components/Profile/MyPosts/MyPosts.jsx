@@ -1,25 +1,35 @@
-// import React from "react";
+import React from "react";
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
-let postsData = [
-  { id: 1, messege: 'Hi, how are you?', licesCount: 0 },
-  { id: 2, messege: 'The furst my post', licesCount: 23 }
-]
+const MyPosts = (props) => {
+  let postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />)
 
-let postselement = postsData.map(p => <Post messeger={p.messege} licesCount={p.licesCount} />)
+  let newPostElement = React.createRef();
+  // React.createRef() метод создания ссылки на какой-нибудь элемент из jsx
 
-const MyPosts = () => {
+  let onAddPost = () => {
+      props.addPost();
+   }
+
+   let onPostChange = () => {
+     let text = newPostElement.current.value;    // current ссылается на нативный html элемент
+       props.updateNewPostText(text);
+   }
+
   return (
     <div className={classes.postBlock}>
+      <h3>My posts</h3>
       <div>
-        my posts
-      </div>
-      <div>
-        new posts
+        <div>
+          <textarea onChange={ onPostChange } ref={ newPostElement } value={ props.newPostText }/>
+        </div>
+        <div>
+          <button onClick={ onAddPost }>Add post</button>
+        </div>
       </div>
       <div className={classes.posts}>
-        {postselement}
+        {postsElement}
       </div>
     </div>
   );

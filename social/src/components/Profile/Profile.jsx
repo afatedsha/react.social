@@ -1,15 +1,15 @@
 import React from "react";
-import classes from './Profile.module.css';
-import MyPosts from './MyPosts/MyPosts';
 import Profileinfo from "./Profileinfo/Profileinfo";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div>
       <Profileinfo />
-      <MyPosts />
+      <MyPostsContainer store={props.store} />
+      {/* в store хранится база данных и тут мы читаем из нее posts */}
     </div>
-  );
+  )
 }
 
 export default Profile;
